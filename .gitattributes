@@ -1,0 +1,2 @@
+# Unified patch context contains meaningful single-space blank context lines.
+branding/vault2/source.patch -whitespace
