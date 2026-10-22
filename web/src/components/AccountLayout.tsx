@@ -33,7 +33,7 @@ export default function AccountLayout() {
   ];
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar email={auth.email} isOwner={auth.is_owner} />
       <div className="flex flex-1">
         {/* Sidebar */}

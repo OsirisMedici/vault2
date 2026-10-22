@@ -21,7 +21,7 @@ export default function ProposalApprove() {
   const approval = useLoaderData({ from: "/approve/$id" }) as ApprovalData | null;
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar />
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="flex flex-col items-center w-full">

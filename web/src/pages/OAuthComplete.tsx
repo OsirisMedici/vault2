@@ -8,7 +8,7 @@ export default function OAuthComplete() {
   const isSuccess = status === "success";
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar />
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="bg-surface rounded-2xl w-full max-w-[480px] p-10 shadow-[0_1px_3px_rgba(0,0,0,0.08),0_8px_24px_rgba(0,0,0,0.04)]">

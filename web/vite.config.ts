@@ -34,6 +34,18 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    host: "127.0.0.1",
+    port: 14421,
+    strictPort: true,
+    allowedHosts: ["raven.tailf4bdfc.ts.net"],
+    headers: {
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'",
+      "Referrer-Policy": "no-referrer",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+    },
+  },
   server: {
     proxy: {
       "/v1": API_TARGET,

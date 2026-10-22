@@ -39,7 +39,7 @@ export default function VaultLayout() {
 
   // The Members section (Users / Agents / Tokens) is only meaningful at
   // vault `member` or higher: a `proxy`-role caller can only proxy
-  // requests through Agent Vault — they have no read or mutation rights
+  // requests through Vault 2 — they have no read or mutation rights
   // on the people/agents/tokens lists, and the underlying GET endpoints
   // require `member`+ anyway.
   const showMembersNav = vaultContext.vault_role !== "proxy";
@@ -190,7 +190,7 @@ export default function VaultLayout() {
   ];
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar email={auth.email} vaultName={vaultContext.vault_name} isOwner={auth.is_owner} />
       <div className="flex flex-1">
         {/* Sidebar */}

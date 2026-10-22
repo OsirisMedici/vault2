@@ -26,7 +26,7 @@ export default function DataTable<T>({
   emptyDescription,
 }: DataTableProps<T>) {
   return (
-    <div className="border border-border rounded-xl overflow-hidden bg-surface">
+    <div className="vault2-table border border-border rounded-xl overflow-x-auto bg-surface">
       <table className="w-full">
         <thead>
           <tr className="border-b border-border">

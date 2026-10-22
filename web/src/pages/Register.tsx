@@ -13,7 +13,7 @@ export default function Register() {
   const [showLoginLink, setShowLoginLink] = useState(true);
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar />
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="flex flex-col items-center w-full">
@@ -304,7 +304,7 @@ function RegisterForm({ isFirstUser, onStepChange }: { isFirstUser: boolean; onS
         <p className="text-text-muted text-[15px] mb-8">
           {emailSent
             ? <>We sent a 6-digit code to <strong className="text-text">{email}</strong>. Enter it below to activate your account.</>
-            : <>Ask your Agent Vault instance owner for the 6-digit verification code, then enter it below to activate your account.</>
+            : <>Ask your Vault 2 instance owner for the 6-digit verification code, then enter it below to activate your account.</>
           }
         </p>
 
@@ -365,8 +365,8 @@ function RegisterForm({ isFirstUser, onStepChange }: { isFirstUser: boolean; onS
       </h2>
       <p className="text-text-muted text-[15px] mb-8">
         {isFirstUser
-          ? "Set up the first account to initialize your Agent Vault instance."
-          : "Sign up for an account to access your team's Agent Vault instance."}
+          ? "Set up the first account to initialize your Vault 2 instance."
+          : "Sign up for an account to access your team's Vault 2 instance."}
       </p>
 
       {!isFirstUser && <DomainNotice className="mb-6" />}

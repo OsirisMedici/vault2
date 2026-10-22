@@ -9,7 +9,7 @@ import { apiFetch } from "../lib/api";
 
 export default function ForgotPassword() {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar />
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="flex flex-col items-center w-full">
@@ -172,7 +172,7 @@ function ForgotPasswordForm() {
         <p className="text-text-muted text-[15px] mb-8">
           {emailSent
             ? <>We sent a 6-digit code to <strong className="text-text">{email}</strong>. Enter it below with your new password.</>
-            : <>Ask your Agent Vault instance owner for the 6-digit reset code, then enter it below with your new password.</>
+            : <>Ask your Vault 2 instance owner for the 6-digit reset code, then enter it below with your new password.</>
           }
         </p>
 

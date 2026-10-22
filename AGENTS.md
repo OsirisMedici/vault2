@@ -1,114 +1,60 @@
-# Agent Vault — Agent Protocol
+# Vault 2 project contract
 
-Agent Vault is an HTTP proxy that attaches credentials to your outbound requests. You never see or handle credentials directly — route authenticated requests through Agent Vault and it authenticates on your behalf.
+The user wants to save an account once and ask an agent to use the correct saved
+account without typing/copying its password. Complete the browser workflow and
+verify identity; do not substitute branding, an API demo, a warm input probe or
+connector access for that result. Read `docs/product-direction.md` first.
 
-## When to use
+This is the independent Vault 2 repository, separate from the original Vault
+project. Preserve that project, its worktrees and deployment. Original Infisical
+source attribution and license boundaries remain. The upstream engine source is
+not changed by the current Vault-specific work.
 
-1. Check that `AGENT_VAULT_TOKEN` is set — if not, Agent Vault is not available
-2. Call `/discover` to get the list of brokerable services
-3. For requests to hosts listed in the discover response, route through Agent Vault
-4. For all other requests, make them directly
+Before mutation verify host, registered project/root, branch, dirty state,
+starting commit and remotes. Do not reset unrelated changes. Source publication
+is authorized to the explicit Vault 2 repository; push explicit branches and
+verify the remote SHA. Runtime changes and deployments need their own scope.
 
-## Environment variables
+Use `~/.bun/bin/bun` for JS/TS. Preserve the upstream package lock and required
+Go/runtime versions. Never install/build merely to inspect or register source.
+Do not automatically start runtime or previews when creating a worktree.
 
-| Variable | Description |
-|----------|-------------|
-| `AGENT_VAULT_ADDR` | Base URL of the Agent Vault server (e.g. `http://127.0.0.1:14321`) |
-| `AGENT_VAULT_TOKEN` | Bearer token for authenticating with Agent Vault. Either a vault-scoped session token or a long-lived agent token. |
-| `AGENT_VAULT_VAULT` | Vault the session is scoped to |
+Read and use `/Users/pranshisharma/.agents/skills/change-evidence/SKILL.md`
+for implementation/testing. Save, inspect and embed real nonsecret UI evidence.
+Never fabricate screenshots or label fixtures as browser acceptance.
 
-## The X-Vault header
+Use purpose-built tools and T3 preview tools first. Call `preview_status`, use
+fresh owned tabs in the approved profile, bind actual current thread/tab/profile,
+and preserve origin, URL, control generation, selected account and form checks.
+Do not operate another thread's tabs or personal Chrome. Follow the host's
+documented browser fallback rules. Do not inspect browser storage, cookies,
+session tokens or secret-bearing network responses.
 
-If your token is an instance-level agent token (created via `agent-vault agent create`), you must include `X-Vault: {vault_name}` on all control-plane requests (`/discover`, `/v1/proposals`). If `AGENT_VAULT_VAULT` is set, use that value. Vault-scoped sessions (from `vault run`) do not need this header. Proxied requests don't use `X-Vault` either — vault for proxy traffic is communicated via the `Proxy-Authorization` userinfo (`token:vault`) baked into `HTTPS_PROXY`/`HTTP_PROXY`, which `vault run` configures for you.
+Stop for MFA/CAPTCHA/recovery; the owner enters required secrets privately in the
+working page. Do not request codes in chat, read them from email, create a
+request-secret workaround, resend repeatedly or retry an uncertain submission.
+Only exact matching website identity can establish signed-in acceptance.
 
-## Discover available services
+Private credential/state/recovery paths stay outside source and transcripts.
+The existing owner-assisted helper is not an isolated credential security
+boundary. A proxy agent role may not reveal credentials; never elevate it to
+member/admin to make browser filling convenient. No new grant, rotation,
+registration, sync, export or reimport without the user's selected scope.
 
-Always call this first to learn which services have credentials configured:
+The original signed Bitwarden installation and Keychain enrollment are separate
+and must remain intact. Karen's active integration checkout is not owned here.
+Do not copy T3 runtime authorization/state to enable a missing transport.
 
-```
-GET {AGENT_VAULT_ADDR}/discover
-Authorization: Bearer {AGENT_VAULT_TOKEN}
-X-Vault: {vault_name}
-```
+For Raven previews follow
+`/Users/pranshisharma/.config/osiris-agent-rules/private-previews.md`.
+Keep loopback bindings and private Tailscale Serve; preserve other mappings.
+Read `docs/operations.md` before startup/restart/recovery. A health endpoint is
+not full readiness; backup integrity is not a running restored-engine test.
 
-Response includes `vault`, `services` (each entry has `name` and `host`, where `host` is the joined inline form — `slack.com/api/*` for path-scoped rules), and `available_credentials` (key names only — values are never exposed). Before creating a proposal, check `available_credentials` to avoid requesting credentials that already exist in the vault. When two services share a bare host (e.g. one service at `slack.com/api/*` and another at `slack.com/api/apps.connections.*`), distinguish them by `name` in subsequent operations.
+Read `docs/upstream/AGENTS.md` as the upstream API-broker protocol reference,
+not permission to activate services or request broad credentials. The user's
+selected browser workflow and this repository's custody restrictions govern
+Vault 2 helper work.
 
-## Route requests through the proxy
-
-For services returned by `/discover`, just call the real upstream URL — `agent-vault vault run` configures `HTTPS_PROXY` and the Agent Vault root CA on the child process so standard HTTP clients transparently route through the broker. Agent Vault strips broker-scoped headers, attaches the real credential, and forwards to the upstream over HTTPS.
-
-```
-GET https://api.stripe.com/v1/charges
-```
-
-## Manage services directly (admin only)
-
-If you have vault admin role, you can add or remove services without proposals:
-
-```
-POST {AGENT_VAULT_ADDR}/v1/vaults/{vault_name}/services    -- upsert services by name (body: {"services": [...]}). Each entry must include `host` (accepts inline path form like `slack.com/api/*`) and `name` (canonical slug) — `name` may be omitted only when `host` uniquely matches an existing service in the vault, in which case the server adopts that entry's name.
-DELETE {AGENT_VAULT_ADDR}/v1/vaults/{vault_name}/services/{name}  -- remove a service. The slot also accepts a host as a back-compat shim, returning 409 with the candidate names when more than one service shares that host.
-```
-
-Use these when you already have credentials stored. Use proposals when the human needs to provide new credentials.
-
-## Request access to new services via proposals
-
-When you get a `403` for a host not in `/discover`, create a proposal to request access. The 403 response includes a `proposal_hint` with the denied host.
-
-**Before proposing a proposal, look up how the target service authenticates API requests** to choose the correct auth type.
-
-```json
-POST {AGENT_VAULT_ADDR}/v1/proposals
-Authorization: Bearer {AGENT_VAULT_TOKEN}
-Content-Type: application/json
-
-{
-  "services": [{
-    "action": "set",
-    "name": "stripe",
-    "host": "api.stripe.com",
-    "auth": {"type": "bearer", "token": "STRIPE_KEY"}
-  }],
-  "credentials": [{
-    "action": "set",
-    "key": "STRIPE_KEY",
-    "description": "Stripe API key",
-    "obtain": "https://dashboard.stripe.com/apikeys",
-    "obtain_instructions": "Developers > API Keys > Reveal test key"
-  }],
-  "message": "Need Stripe API key for billing feature",
-  "user_message": "I need access to your Stripe account to build the checkout page."
-}
-```
-
-### Auth types
-
-| Type | Config | Common services |
-|------|--------|----------------|
-| `bearer` | `{"type": "bearer", "token": "SECRET_KEY"}` | Stripe, GitHub, OpenAI |
-| `basic` | `{"type": "basic", "username": "API_KEY"}` | Ashby, Jira (email + token) |
-| `api-key` | `{"type": "api-key", "key": "SECRET", "header": "x-api-key"}` | Anthropic |
-| `custom` | `{"type": "custom", "headers": {"X-Key": "{{ SECRET }}"}}` | Anything else |
-
-### After creating a proposal
-
-1. Present the `approval_url` to the user conversationally
-2. Poll `GET {AGENT_VAULT_ADDR}/v1/proposals/{id}` every 3 seconds for the first 30 seconds, then every 10 seconds, up to 10 minutes — until status is `applied`
-3. Retry your original request
-
-## Error handling
-
-| Status | Meaning | Action |
-|--------|---------|--------|
-| 401 | Invalid or expired token | Check `AGENT_VAULT_TOKEN` |
-| 403 | Host not allowed | Propose a proposal |
-| 429 | Too many pending proposals | Wait for review |
-| 502 | Missing credential or upstream unreachable | Tell user a credential may need to be added |
-
-## Rules
-
-- **Never** extract, log, or display credential values
-- **Never** hardcode tokens — always read from `AGENT_VAULT_TOKEN`
-- **Only** request services returned by `/discover` — if not listed, propose a proposal
-- Do not modify or forge the `Authorization` header beyond using your token
+Report what works, actual measurements, remaining uncertainty and exact owner
+steps. End completed or terminal-blocked final replies with `over and out`.

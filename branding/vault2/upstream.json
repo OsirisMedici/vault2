@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/Infisical/agent-vault.git",
+  "tag": "v0.40.2",
+  "commit": "d5836ec3bb2315de38043d742ae5daca11a4944a",
+  "upstreamLicense": "MIT Expat outside upstream ee directories and third-party exceptions"
+}

@@ -188,7 +188,7 @@ function CredentialStoreDisplay({ store }: { store?: CredentialStoreInfo }) {
         <div className="col-span-2">
           <StoreField
             label="Credential store"
-            tooltip="Built-in keeps credentials in Agent Vault. Infisical syncs read-only from your Infisical instance, overwriting the built-in credentials."
+            tooltip="Built-in keeps credentials in Vault 2. Infisical syncs read-only from your Infisical instance, overwriting the built-in credentials."
             value={kindLabel}
           />
         </div>
@@ -386,7 +386,7 @@ function EditSettingsSheet({
           nameDisabled={isDefault}
           infisicalOptionDisabled={!infisicalAvailable && currentKind !== "infisical"}
           error={error}
-          storeTooltip="Built-in keeps credentials in Agent Vault. Infisical syncs read-only from your Infisical instance, overwriting the built-in credentials."
+          storeTooltip="Built-in keeps credentials in Vault 2. Infisical syncs read-only from your Infisical instance, overwriting the built-in credentials."
         />
       </Sheet>
 

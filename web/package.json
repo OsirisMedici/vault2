@@ -1,10 +1,11 @@
 {
-  "name": "agent-vault-web",
+  "name": "vault2-web",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.170.32",
@@ -19,5 +20,6 @@
     "tailwindcss": "^4.3.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
-  }
+  },
+  "packageManager": "bun@1.4.4"
 }

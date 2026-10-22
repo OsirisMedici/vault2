@@ -21,7 +21,7 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar />
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="flex flex-col items-center w-full">
@@ -93,7 +93,7 @@ function LoginForm() {
         Log In
       </h2>
       <p className="text-text-muted text-[15px] mb-8">
-        Access your team's Agent Vault instance.
+        Access your team's Vault 2 instance.
       </p>
 
       <DomainNotice className="mb-6" />

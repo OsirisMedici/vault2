@@ -27,7 +27,7 @@ export default function UserInvite() {
   const invite = useLoaderData({ from: "/invite/$token" }) as UserInviteData | null;
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar />
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="flex flex-col items-center w-full">
@@ -200,7 +200,7 @@ function ExistingUserForm({
         </div>
         <h2 className="text-2xl font-semibold text-text mb-2">Invite Accepted</h2>
         <p className="text-text-muted text-[15px] mb-8">
-          You've joined Agent Vault.
+          You've joined Vault 2.
           {vaults.length > 0 && (
             <> You have access to {vaults.map((v) => v.vault_name).join(", ")}.</>
           )}
@@ -222,7 +222,7 @@ function ExistingUserForm({
   return (
     <>
       <h2 className="text-[28px] font-semibold mb-2 tracking-tight text-text">
-        Join Agent Vault
+        Join Vault 2
       </h2>
       <p className="text-text-muted text-[15px] mb-6">
         You've been invited to join as <strong className="text-text">{email}</strong>.
@@ -342,10 +342,10 @@ function NewUserForm({
   return (
     <>
       <h2 className="text-[28px] font-semibold mb-2 tracking-tight text-text">
-        Join Agent Vault
+        Join Vault 2
       </h2>
       <p className="text-text-muted text-[15px] mb-6">
-        Create an account to join Agent Vault.
+        Create an account to join Vault 2.
       </p>
 
       <InviteDetails role={role} vaults={vaults} />

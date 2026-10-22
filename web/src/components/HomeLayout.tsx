@@ -60,7 +60,7 @@ export default function HomeLayout() {
   const activeTab: HomeTab = location.pathname === "/users" ? "users" : location.pathname === "/agents" ? "agents" : "vaults";
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-bg">
+    <div className="vault2-app-shell min-h-screen w-full flex flex-col bg-bg">
       <Navbar email={auth.email} isOwner={auth.is_owner} />
       <div className="flex flex-1">
         {/* Sidebar */}

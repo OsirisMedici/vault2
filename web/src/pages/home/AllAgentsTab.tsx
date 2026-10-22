@@ -495,7 +495,7 @@ function AddAgentButton({
         open={open}
         onClose={close}
         title={createResult ? "Connect Your Agent" : "Add Agent"}
-        description={createResult ? "The Agent Vault CLI runs alongside your agent and reads these env vars to bootstrap its environment, so every outbound API call routes through Agent Vault for credential injection." : "Connect an agent, app, or service to Agent Vault."}
+        description={createResult ? "The Agent Vault CLI runs alongside your agent and reads these env vars to bootstrap its environment, so every outbound API call routes through Vault 2 for credential injection." : "Connect an agent, app, or service to Vault 2."}
         footer={
           createResult ? (
             <Button onClick={close}>Done</Button>
@@ -696,7 +696,7 @@ function ConnectAgentView({
 
       <ManualStep n={2} title="Set environment variables">
         <p className="text-sm text-text-muted">
-          The CLI reads these on launch to authenticate with Agent Vault and scope its session to the right vault.
+          The CLI reads these on launch to authenticate with Vault 2 and scope its session to the right vault.
         </p>
         <Snippet value={envSnippet} />
         {vaults.length > 1 && (
@@ -708,7 +708,7 @@ function ConnectAgentView({
 
       <ManualStep n={3} title="Run your agent under agent-vault">
         <p className="text-sm text-text-muted">
-          <code className="text-text-muted">agent-vault run</code> launches your agent with <code className="text-text-muted">HTTPS_PROXY</code> and <code className="text-text-muted">HTTP_PROXY</code> pre-set so both its HTTPS and plain HTTP calls route through Agent Vault for credential injection.
+          <code className="text-text-muted">agent-vault run</code> launches your agent with <code className="text-text-muted">HTTPS_PROXY</code> and <code className="text-text-muted">HTTP_PROXY</code> pre-set so both its HTTPS and plain HTTP calls route through Vault 2 for credential injection.
         </p>
         <Snippet value={RUN_SNIPPETS[installTab]} />
       </ManualStep>

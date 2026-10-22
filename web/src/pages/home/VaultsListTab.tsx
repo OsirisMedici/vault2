@@ -472,7 +472,7 @@ function CreateVaultButton({ onCreated }: { onCreated: (name: string) => void })
           error={error}
           storeTooltip={
             <>
-              Built-in keeps credentials in Agent Vault. Infisical syncs read-only from your Infisical instance.
+              Built-in keeps credentials in Vault 2. Infisical syncs read-only from your Infisical instance.
               {!infisicalAvailable && (
                 <> Set <code>INFISICAL_URL</code> on the server to enable Infisical-backed vaults.</>
               )}

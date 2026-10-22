@@ -405,7 +405,7 @@ function InviteUserButton({
         open={open}
         onClose={close}
         title={inviteLink ? "Invite Created" : "Invite User"}
-        description={inviteLink ? "Share this link to grant access." : "Invite a user to Agent Vault."}
+        description={inviteLink ? "Share this link to grant access." : "Invite a user to Vault 2."}
         footer={
           inviteLink ? (
             <Button onClick={close}>Done</Button>
