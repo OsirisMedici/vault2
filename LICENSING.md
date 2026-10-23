@@ -10,6 +10,8 @@
   product documentation and branding contributions are distributed under
   GPL-3.0-only. Modified upstream web files retain their original upstream
   attribution and license; Vault-specific modifications carry these GPL terms.
+- The local Codex metadata connector under `integrations/codex-mcp/` is
+  distributed under GPL-3.0-only. Its dependencies retain their own licenses.
 - `branding/vault2/source.patch` and its retained upstream license record document
   the original branded-source preparation. They do not relicense the upstream
   distribution or the installed signed Bitwarden application.

@@ -1,0 +1,10 @@
+{
+  "name": "@osirismedici/vault2-codex-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "GPL-3.0-only",
+  "packageManager": "bun@1.4.4",
+  "scripts": { "test": "bun test", "start": "bun src/server.mjs" },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.32.1", "zod": "4.6.7" }
+}
