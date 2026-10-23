@@ -27,6 +27,9 @@ hand control to the owner when MFA, CAPTCHA or recovery is required.
 
 Read [product direction and acceptance gates](docs/product-direction.md),
 [browser workflow](docs/browser-access.md) and [Raven operations](docs/operations.md).
+The [native Codex adapter](docs/native-codex-browser.md) adds isolated temporary
+Chrome profiles through a local stdio MCP server, without reusing T3 state.
+Real saved-account login acceptance remains pending.
 
 ## Original tool and intended product
 
@@ -49,6 +52,7 @@ directly to `web/`. Original history and attribution are retained.
 | `web/` | Branded React interface and retained upstream package lock |
 | `cmd/`, `internal/` | Upstream CLI/server source; engine behavior unchanged |
 | `integrations/browser/` | Owner-assisted GHL helper, guarded probes and tests |
+| `integrations/browser/native-codex/` | Local stdio MCP adapter with private fill and isolated Chrome profiles |
 | `scripts/vault2/` | Local startup, readiness and encrypted recovery tools |
 | `branding/vault2/` | Original branding patch, upstream pin and license receipt |
 | `docs/upstream/` | Preserved upstream README, agent protocol and workflow references |

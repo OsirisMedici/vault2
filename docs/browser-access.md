@@ -1,5 +1,16 @@
 # Browser integration status
 
+## Native Codex
+
+The local stdio MCP adapter in `integrations/browser/native-codex/` uses its own
+temporary Chrome profile, private credential-to-browser transport, one-use
+selection and one submission. It preserves exact account/origin/form checks and
+verified owner-session, lock and browser-profile cleanup. It does not attach to
+IAB or T3. See [setup, custody and acceptance limits](native-codex-browser.md).
+Source and fixture validation are separate from a real saved-account GHL login.
+
+## Existing T3 helper
+
 `integrations/browser/ghl-session.mjs` is an owner-assisted local helper using
 the existing engine's selected single-key reads. It has fixed GHL origin/form
 rules and exact current thread, tab, profile, URL/control and account binding.

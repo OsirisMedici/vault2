@@ -1,0 +1,16 @@
+{
+  "name": "vault2-native-codex",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "GPL-3.0-only",
+  "packageManager": "bun@1.4.4",
+  "scripts": {
+    "start": "bun server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.26.0",
+    "playwright-core": "1.62.1",
+    "zod": "3.25.76"
+  }
+}
